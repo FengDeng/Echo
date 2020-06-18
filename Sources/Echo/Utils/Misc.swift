@@ -50,7 +50,7 @@ protocol LayoutWrapper {
 
 extension LayoutWrapper {
   var layout: Layout {
-    ptr.load(as: Layout.self)
+    ptr.withMemoryRebound(to: Layout.self, capacity: 1) { $0.pointee }
   }
   
   var trailing: UnsafeRawPointer {
